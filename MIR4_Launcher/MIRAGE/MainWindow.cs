@@ -3,383 +3,393 @@ using MIRAGE.Helper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Windows.Media;
-using xamlSpinnersWPF;
 
 namespace MIRAGE
 {
-  public class MainWindow : Window, IComponentConnector
-  {
-    private CallApi _apiWorker;
-    private string _patchApi_url = "https://api.mir4.co.kr/launcher";
-    private string GAME_PROCESS_NAME = "Mir4";
-    private int _LAUNCHER_VER = 5;
-    private string _LAUNCHER_NAME = "MIR4_GameRun.exe";
-    private string _LAUNCHER_REQUIRED_URL = "https://logplatformbeta.blob.core.windows.net/launcher/required/";
-    internal Grid bgGrid;
-    internal ImageBrush BasicBack;
-    internal ucSpinnerDotCircle loadSpinner;
-    private bool _contentLoaded;
-
-    public MainWindow() => this.InitializeComponent();
-
-    private void DoLauncher()
+    public partial class MainWindow : Window
     {
-      try
-      {
-        string installPath = this.getInstallPath();
-        Console.WriteLine("App Path : " + installPath);
-        string str = installPath + "\\" + this._LAUNCHER_NAME;
-        Console.WriteLine("Exec Launcher : " + str);
-        if (!File.Exists(str))
+        private CallApi _apiWorker;
+        private string _patchApi_url = "https://api.mir4.co.kr/launcher";
+        private string GAME_PROCESS_NAME = "Mir4";
+        private int _LAUNCHER_VER = 5;
+        private string _LAUNCHER_NAME = "MIR4_GameRun.exe";
+        private string _LAUNCHER_REQUIRED_URL = "https://logplatformbeta.blob.core.windows.net/launcher/required/";
+
+        public MainWindow()
         {
-          this.ShowPopup("The launcher’s required files are missing.\r\nPlease reinstall the launcher.");
-          Application.Current.Shutdown();
+            InitializeComponent();
         }
-        else
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-          Process.Start(new ProcessStartInfo(str, "-LauncherToken=uwrj2NLZS7teVeYs+3OmL8TwxmiVHmh8AXXrak0mFTIuvVJAJEBzcTo9P+cCtu+i -LaunchGameInstanceID=b60fdd383b28474ca1458b98fc8aed76")
-          {
-            CreateNoWindow = true,
-            RedirectStandardOutput = false,
-            UseShellExecute = false
-          });
-          Application.Current.Shutdown();
+            if (IsGameRun())
+                DoLauncher();
+            else
+                GetLauncherRequired();
         }
-      }
-      catch (Exception ex)
-      {
-        SentryApi.SendException(ex);
-      }
-    }
 
-    private string UTF82EUCKR(string strUTF8)
-    {
-      ASCIIEncoding asciiEncoding = new ASCIIEncoding();
-      return asciiEncoding.GetString(Encoding.Convert(Encoding.UTF8, Encoding.GetEncoding(asciiEncoding.CodePage), Encoding.UTF8.GetBytes(strUTF8)));
-    }
-
-    private string EUCKR2UTF8(string strEUCKR)
-    {
-      ASCIIEncoding asciiEncoding = new ASCIIEncoding();
-      return Encoding.UTF8.GetString(Encoding.Convert(Encoding.GetEncoding(asciiEncoding.CodePage), Encoding.UTF8, Encoding.GetEncoding(asciiEncoding.CodePage).GetBytes(strEUCKR)));
-    }
-
-    private void ShowPopup(string _msg)
-    {
-      try
-      {
-        popup popup = new popup(1, _msg);
-        popup.Owner = (Window) this;
-        popup.ShowDialog();
-        popup.Close();
-      }
-      catch (Exception ex)
-      {
-        SentryApi.SendException(ex);
-      }
-    }
-
-    private void CloseLauncher()
-    {
-      Environment.Exit(0);
-      Process.GetCurrentProcess().Kill();
-      this.Close();
-    }
-
-    private void Window_Loaded(object sender, RoutedEventArgs e)
-    {
-      if (this.IsGameRun())
-        this.DoLauncher();
-      else
-        this.GetLauncherRequired();
-    }
-
-    private bool IsGameRun()
-    {
-      bool flag = false;
-      try
-      {
-        foreach (Process process in Process.GetProcesses())
+        private void DoLauncher()
         {
-          if (process.ProcessName.Equals(this.GAME_PROCESS_NAME))
-          {
-            flag = true;
-            break;
-          }
-        }
-      }
-      catch (Exception ex)
-      {
-        SentryApi.SendException(ex);
-      }
-      return flag;
-    }
-
-    private void GetLauncherRequired()
-    {
-      try
-      {
-        string installPath = this.getInstallPath();
-        Console.WriteLine("getInstallPath : " + installPath);
-        string[] strArray = new string[8]
-        {
-          "AesTool.dll",
-          "Newtonsoft.Json.dll",
-          "Newtonsoft.Json.xml",
-          "Sentry.dll",
-          "Sentry.PlatformAbstractions.dll",
-          "Sentry.Protocol.dll",
-          "Sentry.Protocol.xml",
-          "Sentry.xml"
-        };
-        List<DownloadFileInfo> downloadFileInfoList = new List<DownloadFileInfo>();
-        for (int index = 0; index < strArray.Length; ++index)
-        {
-          string path = installPath + "\\" + strArray[index];
-          if (!File.Exists(path))
-          {
-            Console.WriteLine("Required file missing: " + path);
-            downloadFileInfoList.Add(new DownloadFileInfo()
+            try
             {
-              path = strArray[index],
-              URL = this._LAUNCHER_REQUIRED_URL + strArray[index]
-            });
-          }
-          else
-            Console.WriteLine("Required file found: " + path);
-        }
-        if (downloadFileInfoList.Count > 0)
-        {
-          Console.WriteLine("Required files to download: " + downloadFileInfoList.Count.ToString());
-          DownloadFiles downloadFiles = new DownloadFiles(downloadFileInfoList.ToArray(), "", installPath, "\\", "2");
-          downloadFiles.Owner = (Window) this;
-          downloadFiles.ShowDialog();
-          downloadFiles.Close();
-        }
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.ToString());
-        SentryApi.SendException(ex);
-      }
-      this.GetLauncherVersion();
-    }
+                string installPath = getInstallPath();
+                Console.WriteLine("App Path : " + installPath);
 
-    private void GetLauncherVersion()
-    {
-      try
-      {
-        this._apiWorker = new CallApi(this.getPatchApiUrl() + "/getLauncherInfo", new Dictionary<string, string>()
-        {
-          {
-            "ServiceID",
-            App.MIR4_GAME_INDEX
-          }
-        });
-        this._apiWorker.ResultEvent += new CallApi.ResultEventHandler(this._worker_LauncherVersion_RunWorkerCompleted);
-        this._apiWorker.DoCallPostAsync();
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.ToString());
-        SentryApi.SendException(ex);
-        this.DoLauncher();
-      }
-    }
+                string exePath = Path.Combine(installPath, _LAUNCHER_NAME);
+                Console.WriteLine("Exec Launcher : " + exePath);
 
-    private void _worker_LauncherVersion_RunWorkerCompleted()
-    {
-      try
-      {
-        string installPath = this.getInstallPath();
-        Console.WriteLine("App Path : " + installPath);
-        Console.WriteLine("_resultString : " + this._apiWorker._resultString);
-        if (this._apiWorker._resultString != "-1")
-        {
-          JObject jobject = JObject.Parse(this._apiWorker._resultString);
-          if (int.Parse(jobject["Code"].ToString()) == 200)
-          {
-            this.getLauncherVersion();
-            int num1 = int.Parse(jobject["LauncherVersion"].ToString());
-            string serverUrl = jobject["URL"].ToString();
-            Console.WriteLine("Launcher Server Version : " + num1.ToString());
-            Console.WriteLine("Launcher Local Version : " + this._LAUNCHER_VER.ToString());
-            if (num1 > this._LAUNCHER_VER)
-            {
-              string str = "";
-              long num2 = 0;
-              try
-              {
-                str = jobject["FileSize"].ToString();
-                num2 = Convert.ToInt64(str);
-              }
-              catch (Exception ex)
-              {
-              }
-              string directory = installPath.Substring(0, 3);
-              Console.WriteLine("installDiskName : " + directory);
-              long diskFreeSpace = new UtilDrive().getDiskFreeSpace(directory);
-              Console.WriteLine("Download Size : " + num2.ToString());
-              Console.WriteLine("Disk Free Size : " + diskFreeSpace.ToString());
-              if (num2 >= diskFreeSpace)
-              {
-                this.ShowPopup($"Not enough disk space.\r\nYou need {str} MB.\r\nPlease check your disk space and restart.");
-                Environment.Exit(0);
-                Process.GetCurrentProcess().Kill();
-                this.Close();
-              }
-              this.ShowPopup("A launcher update is available.\r\nThe launcher will restart after the update.");
-              DirectoryInfo directoryInfo = new DirectoryInfo(installPath);
-              if (!directoryInfo.Exists)
-                directoryInfo.Create();
-              DownloadFiles downloadFiles = new DownloadFiles(JsonConvert.DeserializeObject<List<DownloadFileInfo>>(jobject["FileData"].ToString()).ToArray(), serverUrl, installPath, "", "1");
-              downloadFiles.Owner = (Window) this;
-              bool? nullable1 = downloadFiles.ShowDialog();
-              downloadFiles.Close();
-              bool? nullable2 = nullable1;
-              bool flag = true;
-              if (nullable2.GetValueOrDefault() == flag & nullable2.HasValue)
-              {
-                GameData gameData = App.m_mapGameData[App.MIR4_GAME_INDEX];
-                GameInfo gameInfo = new GameInfo();
-                gameData.launcher_version = num1.ToString();
-                string miR4GameIndex = App.MIR4_GAME_INDEX;
-                GameData _mirdata = gameData;
-                gameInfo.WriteGameData(miR4GameIndex, _mirdata);
-              }
+                if (!File.Exists(exePath))
+                {
+                    ShowPopup("The launcher’s required files are missing.\r\nPlease reinstall the launcher.");
+                    Application.Current.Shutdown();
+                    return;
+                }
+
+                var psi = new ProcessStartInfo(
+                    exePath,
+                    "-LauncherToken=uwrj2NLZS7teVeYs+3OmL8TwxmiVHmh8AXXrak0mFTIuvVJAJEBzcTo9P+cCtu+i -LaunchGameInstanceID=b60fdd383b28474ca1458b98fc8aed76"
+                )
+                {
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = false,
+                    UseShellExecute = false
+                };
+
+                Process.Start(psi);
+                Application.Current.Shutdown();
             }
-          }
+            catch (Exception ex)
+            {
+                SentryApi.SendException(ex);
+            }
         }
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.ToString());
-        SentryApi.SendException(ex);
-      }
-      this.DoLauncher();
-    }
 
-    private string getInstallPath()
-    {
-      string installPath = "";
-      try
-      {
-        string name = "SOFTWARE\\WEMADE\\MIR4_Launcher";
-        RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(name, true);
-        if (registryKey != null)
+        private string UTF82EUCKR(string strUTF8)
         {
-          installPath = registryKey.GetValue("ProgramFolder").ToString();
-          registryKey.Close();
+            ASCIIEncoding asciiEncoding = new ASCIIEncoding();
+            return asciiEncoding.GetString(
+                Encoding.Convert(
+                    Encoding.UTF8,
+                    Encoding.GetEncoding(asciiEncoding.CodePage),
+                    Encoding.UTF8.GetBytes(strUTF8)
+                )
+            );
         }
-      }
-      catch (Exception ex)
-      {
-      }
-      return installPath;
-    }
 
-    private string getPatchApiUrl()
-    {
-      string patchApiUrl = "";
-      try
-      {
-        patchApiUrl = ConfigurationManager.AppSettings["patch"];
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.ToString());
-      }
-      if (patchApiUrl == null || patchApiUrl.Length == 0)
-        patchApiUrl = this._patchApi_url;
-      Console.WriteLine("PatchURL : " + patchApiUrl);
-      return patchApiUrl;
-    }
+        private string EUCKR2UTF8(string strEUCKR)
+        {
+            ASCIIEncoding asciiEncoding = new ASCIIEncoding();
+            return Encoding.UTF8.GetString(
+                Encoding.Convert(
+                    Encoding.GetEncoding(asciiEncoding.CodePage),
+                    Encoding.UTF8,
+                    Encoding.GetEncoding(asciiEncoding.CodePage).GetBytes(strEUCKR)
+                )
+            );
+        }
 
-    private string getMode()
-    {
-      string str = "";
-      try
-      {
-        str = ConfigurationManager.AppSettings["mode"];
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.ToString());
-      }
-      if (str == null || str.Length == 0)
-        str = "Release";
-      string mode = str + "GameVersion";
-      Console.WriteLine("Launche Mode : " + mode);
-      return mode;
-    }
+        private void ShowPopup(string message)
+        {
+            try
+            {
+                var p = new popup(1, message) { Owner = this };
+                p.ShowDialog();
+                p.Close();
+            }
+            catch (Exception ex)
+            {
+                SentryApi.SendException(ex);
+            }
+        }
 
-    private void getLauncherVersion()
-    {
-      GameData gameData = new GameData();
-      GameInfo gameInfo = new GameInfo();
-      (bool flag, GameData _mirdata) = gameInfo.checkGameDataFileAndGetData(App.MIR4_GAME_INDEX);
-      if (flag && int.Parse(_mirdata.version) > 0)
-        App.m_mapGameData.Add(App.MIR4_GAME_INDEX, _mirdata);
-      if (_mirdata.launcher_version.Length == 0)
-      {
-        _mirdata.launcher_version = this._LAUNCHER_VER.ToString() ?? "";
-        gameInfo.WriteGameData(App.MIR4_GAME_INDEX, _mirdata);
-      }
-      else
-        this._LAUNCHER_VER = int.Parse(_mirdata.launcher_version);
-    }
+        private void CloseLauncher()
+        {
+            Environment.Exit(0);
+            Process.GetCurrentProcess().Kill();
+            Close();
+        }
 
-    [DebuggerNonUserCode]
-    [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-    public void InitializeComponent()
-    {
-      if (this._contentLoaded)
-        return;
-      this._contentLoaded = true;
-      Application.LoadComponent((object) this, new Uri("/MIR4_Launcher;component/mainwindow.xaml", UriKind.Relative));
-    }
+        private bool IsGameRun()
+        {
+            try
+            {
+                foreach (Process process in Process.GetProcesses())
+                {
+                    if (process.ProcessName.Equals(GAME_PROCESS_NAME, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                SentryApi.SendException(ex);
+            }
+            return false;
+        }
 
-    [DebuggerNonUserCode]
-    [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-    internal Delegate _CreateDelegate(Type delegateType, string handler)
-    {
-      return Delegate.CreateDelegate(delegateType, (object) this, handler);
-    }
+        private void GetLauncherRequired()
+        {
+            try
+            {
+                string installPath = getInstallPath();
+                Console.WriteLine("getInstallPath : " + installPath);
 
-    [DebuggerNonUserCode]
-    [GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    void IComponentConnector.Connect(int connectionId, object target)
-    {
-      switch (connectionId)
-      {
-        case 1:
-          ((FrameworkElement) target).Loaded += new RoutedEventHandler(this.Window_Loaded);
-          break;
-        case 2:
-          this.bgGrid = (Grid) target;
-          break;
-        case 3:
-          this.BasicBack = (ImageBrush) target;
-          break;
-        case 4:
-          this.loadSpinner = (ucSpinnerDotCircle) target;
-          break;
-        default:
-          this._contentLoaded = true;
-          break;
-      }
+                string[] required = new[]
+                {
+                    "AesTool.dll",
+                    "Newtonsoft.Json.dll",
+                    "Newtonsoft.Json.xml",
+                    "Sentry.dll",
+                    "Sentry.PlatformAbstractions.dll",
+                    "Sentry.Protocol.dll",
+                    "Sentry.Protocol.xml",
+                    "Sentry.xml"
+                };
+
+                var toDownload = new List<DownloadFileInfo>();
+                foreach (string file in required)
+                {
+                    string path = Path.Combine(installPath, file);
+                    if (!File.Exists(path))
+                    {
+                        Console.WriteLine("Required file missing: " + path);
+                        toDownload.Add(new DownloadFileInfo
+                        {
+                            path = file,
+                            URL = _LAUNCHER_REQUIRED_URL + file
+                        });
+                    }
+                    else
+                    {
+                        Console.WriteLine("Required file found: " + path);
+                    }
+                }
+
+                if (toDownload.Count > 0)
+                {
+                    Console.WriteLine("Required files to download: " + toDownload.Count);
+                    var dlg = new DownloadFiles(toDownload.ToArray(), "", installPath, "\\", "2")
+                    {
+                        Owner = this
+                    };
+                    dlg.ShowDialog();
+                    dlg.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                SentryApi.SendException(ex);
+            }
+
+            GetLauncherVersion();
+        }
+
+        private void GetLauncherVersion()
+        {
+            try
+            {
+                _apiWorker = new CallApi(
+                    getPatchApiUrl() + "/getLauncherInfo",
+                    new Dictionary<string, string> { { "ServiceID", App.MIR4_GAME_INDEX } }
+                );
+                _apiWorker.ResultEvent += _worker_LauncherVersion_RunWorkerCompleted;
+                _apiWorker.DoCallPostAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                SentryApi.SendException(ex);
+                DoLauncher();
+            }
+        }
+
+        private void _worker_LauncherVersion_RunWorkerCompleted()
+        {
+            try
+            {
+                string installPath = getInstallPath();
+                Console.WriteLine("App Path : " + installPath);
+                Console.WriteLine("_resultString : " + _apiWorker._resultString);
+
+                if (_apiWorker._resultString != "-1")
+                {
+                    JObject jo = JObject.Parse(_apiWorker._resultString);
+                    JToken codeTok = jo["Code"];
+                    if (codeTok != null && int.Parse(codeTok.ToString()) == 200)
+                    {
+                        getLauncherVersion();
+
+                        int serverVer = 0;
+                        JToken verTok = jo["LauncherVersion"];
+                        if (verTok != null) int.TryParse(verTok.ToString(), out serverVer);
+
+                        string serverUrl = "";
+                        JToken urlTok = jo["URL"];
+                        if (urlTok != null) serverUrl = urlTok.ToString();
+
+                        Console.WriteLine("Launcher Server Version : " + serverVer);
+                        Console.WriteLine("Launcher Local Version : " + _LAUNCHER_VER);
+
+                        if (serverVer > _LAUNCHER_VER)
+                        {
+                            string sizeStr = "";
+                            long sizeBytes = 0;
+                            try
+                            {
+                                JToken sizeTok = jo["FileSize"];
+                                if (sizeTok != null)
+                                {
+                                    sizeStr = sizeTok.ToString();
+                                    long.TryParse(sizeStr, out sizeBytes);
+                                }
+                            }
+                            catch { /* ignore size parse errors */ }
+
+                            string root = installPath.Length >= 3 ? installPath.Substring(0, 3) : "C:\\";
+                            long free = new UtilDrive().getDiskFreeSpace(root);
+
+                            Console.WriteLine("Download Size : " + sizeBytes);
+                            Console.WriteLine("Disk Free Size : " + free);
+
+                            if (sizeBytes >= free)
+                            {
+                                ShowPopup("Not enough disk space.\r\nYou need " + sizeStr + " MB.\r\nPlease check your disk space and restart.");
+                                Environment.Exit(0);
+                                Process.GetCurrentProcess().Kill();
+                                Close();
+                                return;
+                            }
+
+                            ShowPopup("A launcher update is available.\r\nThe launcher will restart after the update.");
+
+                            var dir = new DirectoryInfo(installPath);
+                            if (!dir.Exists) dir.Create();
+
+                            var filesToken = jo["FileData"];
+                            List<DownloadFileInfo> files = new List<DownloadFileInfo>();
+                            if (filesToken != null)
+                                files = JsonConvert.DeserializeObject<List<DownloadFileInfo>>(filesToken.ToString());
+
+                            var dlg = new DownloadFiles(files.ToArray(), serverUrl, installPath, "", "1")
+                            {
+                                Owner = this
+                            };
+                            bool? ok = dlg.ShowDialog();
+                            dlg.Close();
+
+                            if (ok.HasValue && ok.Value)
+                            {
+                                GameData gd = App.m_mapGameData[App.MIR4_GAME_INDEX];
+                                gd.launcher_version = serverVer.ToString();
+
+                                var gi = new GameInfo();
+                                gi.WriteGameData(App.MIR4_GAME_INDEX, gd);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                SentryApi.SendException(ex);
+            }
+
+            DoLauncher();
+        }
+
+        private string getInstallPath()
+        {
+            try
+            {
+                const string subkey = @"SOFTWARE\WEMADE\MIR4_Launcher";
+                using (var rk = Registry.CurrentUser.OpenSubKey(subkey, false))
+                {
+                    if (rk != null)
+                    {
+                        object v = rk.GetValue("ProgramFolder");
+                        if (v != null) return v.ToString();
+                    }
+                }
+            }
+            catch { /* ignore */ }
+            return "";
+        }
+
+        private string getPatchApiUrl()
+        {
+            string url = "";
+            try
+            {
+                url = ConfigurationManager.AppSettings["patch"];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            if (string.IsNullOrWhiteSpace(url))
+                url = _patchApi_url;
+
+            Console.WriteLine("PatchURL : " + url);
+            return url;
+        }
+
+        private string getMode()
+        {
+            string s = "";
+            try
+            {
+                s = ConfigurationManager.AppSettings["mode"];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            if (string.IsNullOrWhiteSpace(s))
+                s = "Release";
+
+            string mode = s + "GameVersion";
+            Console.WriteLine("Launche Mode : " + mode);
+            return mode;
+        }
+
+        private void getLauncherVersion()
+        {
+            var gi = new GameInfo();
+            var result = gi.checkGameDataFileAndGetData(App.MIR4_GAME_INDEX); // tuple
+
+            bool ok = result.Item1;
+            GameData saved = result.Item2;
+
+            if (ok)
+            {
+                int verParsed;
+                if (int.TryParse(saved.version, out verParsed) && verParsed > 0)
+                {
+                    if (!App.m_mapGameData.ContainsKey(App.MIR4_GAME_INDEX))
+                        App.m_mapGameData.Add(App.MIR4_GAME_INDEX, saved);
+                }
+            }
+
+            if (string.IsNullOrEmpty(saved.launcher_version))
+            {
+                saved.launcher_version = _LAUNCHER_VER.ToString();
+                gi.WriteGameData(App.MIR4_GAME_INDEX, saved);
+            }
+            else
+            {
+                int parsed;
+                if (int.TryParse(saved.launcher_version, out parsed))
+                    _LAUNCHER_VER = parsed;
+            }
+        }
     }
-  }
 }

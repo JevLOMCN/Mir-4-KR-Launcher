@@ -3,42 +3,349 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MIRAGE"
-        xmlns:locals="clr-namespace:xamlSpinnersWPF"
-        Loaded="Window_Loaded" Title="미르4업데이트" Height="706" Width="1224"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None"
+        xmlns:sp="clr-namespace:xamlSpinnersWPF"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded" KeyDown="Window_KeyDown"
+        Title="미르4" Height="706" Width="1224"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="None"
         AllowsTransparency="true" Background="Transparent">
-  <FrameworkElement.Triggers>
-    <EventTrigger RoutedEvent="Window.Loaded">
-      <BeginStoryboard>
-        <Storyboard>
-          <DoubleAnimation Duration="00:00:00.7" Storyboard.TargetProperty="Opacity" From="0" To="1"/>
-        </Storyboard>
-      </BeginStoryboard>
-    </EventTrigger>
-  </FrameworkElement.Triggers>
-  <Border>
-    <UIElement.Effect>
-      <DropShadowEffect BlurRadius="14" ShadowDepth="0" Opacity="0.8" Color="Black"/>
-    </UIElement.Effect>
-    <Grid x:Name="bgGrid" Margin="20">
-      <Panel.Background>
-        <ImageBrush x:Name="BasicBack" ImageSource="Resources/Loading_BG.jpg"/>
-      </Panel.Background>
-      <Border BorderThickness="0" BorderBrush="Black">
-        <Grid>
-          <locals:ucSpinnerDotCircle x:Name="loadSpinner" RenderTransformOrigin="0.5,0.5" Margin="0,-2,0,2">
-            <UIElement.RenderTransform>
-              <TransformGroup>
-                <ScaleTransform ScaleX="3" ScaleY="3"/>
-                <SkewTransform/>
-                <RotateTransform/>
-                <TranslateTransform/>
-              </TransformGroup>
-            </UIElement.RenderTransform>
-          </locals:ucSpinnerDotCircle>
-        </Grid>
-      </Border>
+
+    <FrameworkElement.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Duration="00:00:00.7"
+                           Storyboard.TargetProperty="Opacity"
+                           From="0" To="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </FrameworkElement.Triggers>
+
+    <!-- single root -->
+    <Grid>
+
+        <!-- Implicit style: OK without x:Key because TargetType is set -->
+        <Grid.Resources>
+            <Style TargetType="{x:Type RadioButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                            <BulletDecorator Background="Transparent" Cursor="Hand">
+                                <BulletDecorator.Bullet>
+                                    <Grid Height="18" Width="18">
+                                        <Border x:Name="RadioOuter"
+                            Background="#FFE3E3E3"
+                            BorderBrush="#FF686868"
+                            BorderThickness="1"
+                            CornerRadius="50"/>
+                                        <Border x:Name="RadioMark"
+                            CornerRadius="50" Margin="3"
+                            Background="#FF48B094"
+                            Visibility="Hidden"/>
+                                    </Grid>
+                                </BulletDecorator.Bullet>
+                            </BulletDecorator>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="RadioMark"
+                          Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="RadioOuter"
+                          Property="BorderBrush" Value="#FFADADAD"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <!-- your UI -->
+        <Border>
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="14" ShadowDepth="0" Opacity="0.8" Color="Black"/>
+            </Border.Effect>
+
+            <Grid x:Name="bgGrid" Margin="20">
+                <Grid.Background>
+                    <ImageBrush x:Name="BasicBack" ImageSource="/Resources/Loading_BG.jpg"/>
+                </Grid.Background>
+
+                <Border BorderThickness="0" BorderBrush="Black">
+                    <Grid>
+                        <Image x:Name="imageView" Stretch="Uniform"/>
+
+                        <Image x:Name="headerDiv"
+                   Width="1184" Height="35"
+                   Margin="0,0,0,0"
+                   Source="/Resources/header.png"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   MouseLeftButtonDown="headerDiv_MouseLeftButtonDown"/>
+
+                        <Image x:Name="logoDiv"
+                   Width="66" Height="16" Margin="36,8,0,0"
+                   Source="/Resources/logo.png"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"/>
+
+                        <Image x:Name="topDownDiv"
+                   Width="14" Height="14"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Margin="0,12,68,0"
+                   MouseLeftButtonUp="topDownDiv_MouseLeftButtonUp"
+                   MouseEnter="topDownDiv_MouseEnter"
+                   MouseLeave="topDownDiv_MouseLeave">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/icon_scale_down.png"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="/Resources/icon_scale_down_on.png"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="topMaxDiv"
+                   Width="14" Height="14"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Margin="0,12,42,0">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/icon_scale_up.png"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="topCloseDiv"
+                   Width="14" Height="14"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" Margin="0,12,15,0"
+                   MouseLeftButtonUp="topCloseDiv_MouseLeftButtonUp"
+                   MouseEnter="topCloseDiv_MouseEnter"
+                   MouseLeave="topCloseDiv_MouseLeave">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/icon_close.png"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="/Resources/icon_close_on.png"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="GameControlDiv1"
+                   Width="236" Height="70"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom" Margin="0,0,70,105"
+                   MouseLeftButtonUp="GameControlDiv1_MouseLeftButtonUp"
+                   MouseEnter="GameControlDiv1_MouseEnter"
+                   MouseLeave="GameControlDiv1_MouseLeave"
+                   MouseLeftButtonDown="GameControlDiv1_MouseLeftButtonDown"/>
+
+                        <Image x:Name="GameControlDiv"
+                   Width="236" Height="70"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom" Margin="0,0,70,25"
+                   MouseLeftButtonUp="GameControlDiv_MouseLeftButtonUp"
+                   MouseEnter="GameControlDiv_MouseEnter"
+                   MouseLeave="GameControlDiv_MouseLeave"
+                   MouseLeftButtonDown="GameControlDiv_MouseLeftButtonDown"/>
+
+                        <!-- Placeholder instead of custom UCMainMenu controls -->
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,57,0,0">
+                            <Label Content="Menu 1"/>
+                            <Label Content="Menu 2" Margin="0,37,0,0"/>
+                            <Label Content="Menu 3" Margin="0,73,0,0"/>
+                            <Label Content="Menu 4" Margin="0,108,0,0"/>
+                        </StackPanel>
+
+                        <Image x:Name="dirTitle" Width="135" Height="18" Margin="0,60,80,0"
+                   Source="/Resources/dir_title.png"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
+                        <RadioButton x:Name="radioDir11"
+                         Margin="0,87,198,0"
+                         HorizontalAlignment="Right" VerticalAlignment="Top"
+                         GroupName="radioDir" Cursor="Hand" IsChecked="True"
+                         Checked="radioDir11_Checked"/>
+
+                        <Image x:Name="dir11" Width="68" Height="16"
+                   Margin="0,90,120,0" Source="/Resources/dir_text1.png"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Cursor="Hand" MouseLeftButtonUp="dir11_MouseLeftButtonUp"/>
+
+                        <RadioButton x:Name="radioDir12"
+                         Margin="0,118,198,0"
+                         HorizontalAlignment="Right" VerticalAlignment="Top"
+                         GroupName="radioDir" Cursor="Hand"
+                         Checked="radioDir12_Checked"
+                         MouseEnter="dirbtn12_MouseEnter"
+                         MouseLeave="dirbtn12_MouseLeave"/>
+
+                        <Image x:Name="dir12" Width="112" Height="16" Margin="0,120,75,0"
+                   Source="/Resources/dir_text2.png"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Cursor="Hand"
+                   MouseLeftButtonUp="dir12_MouseLeftButtonUp"
+                   MouseEnter="dirbtn12_MouseEnter"
+                   MouseLeave="dirbtn12_MouseLeave"/>
+
+                        <Image x:Name="dirbtn12" Width="38" Height="16" Margin="0,120,75,0"
+                   Source="/Resources/dir_btn_text2.png"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Cursor="Hand"
+                   MouseEnter="dirbtn12_MouseEnter"
+                   MouseLeave="dirbtn12_MouseLeave"/>
+
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="968,160,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="18" Height="14" Source="/Resources/resolution_icon.png"/>
+                                    <Label Content="해상도 비율" FontSize="15" FontWeight="Bold" Margin="5,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton x:Name="radioResN" GroupName="radioRes" Cursor="Hand"
+                               VerticalAlignment="Center" IsChecked="True"
+                               Checked="radioResN_Checked"/>
+                                    <Label Content="기본" FontSize="14" FontWeight="Bold" Margin="5,0,0,0"
+                         MouseLeftButtonUp="radioResN_Checked"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton x:Name="radioResW" GroupName="radioRes" Cursor="Hand"
+                               VerticalAlignment="Center"
+                               Checked="radioResW_Checked"/>
+                                    <Label Content="와이드" FontSize="14" FontWeight="Bold" Margin="5,0,0,0"
+                         MouseLeftButtonUp="radioResW_Checked"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+
+                        <Image x:Name="dir12Tip" Width="203" Height="103" Margin="0,140,15,0"
+                   Source="/Resources/dir_popup.png"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Visibility="Hidden"/>
+
+                        <Image x:Name="MainTitleDiv" Width="497" Height="337"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="140,100,0,0">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/title3_bg_text.png"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Image x:Name="NoticeDiv" Width="270" Height="176"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Margin="0,98,92,0" Visibility="Hidden">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/aside_bg1.png"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Label x:Name="NoticeTitle" Content="새소식"
+                   HorizontalAlignment="Left" Margin="1085,115,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="22" FontWeight="Bold" Visibility="Hidden"/>
+
+                        <Label x:Name="btnNotice" Content="+"
+                   HorizontalAlignment="Right" Margin="0,103,110,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="36" FontWeight="Bold" Cursor="Hand"
+                   Visibility="Hidden"
+                   PreviewMouseDown="btnNotice_PreviewMouseDown"/>
+
+                        <Label x:Name="Notice1" Content=""
+                   HorizontalAlignment="Left" Margin="1085,165,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="14" Cursor="Hand"
+                   PreviewMouseDown="Notice1_PreviewMouseDown"/>
+
+                        <Label x:Name="Notice2" Content=""
+                   HorizontalAlignment="Left" Margin="1085,195,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="14" Cursor="Hand"
+                   PreviewMouseDown="Notice2_PreviewMouseDown"/>
+
+                        <Label x:Name="Notice3" Content=""
+                   HorizontalAlignment="Left" Margin="1085,225,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="14" Cursor="Hand"
+                   PreviewMouseDown="Notice3_PreviewMouseDown"/>
+
+                        <Label Content="v.13"
+                   HorizontalAlignment="Left" Margin="1145,635,0,0"
+                   VerticalAlignment="Top"/>
+
+                        <Image x:Name="EventDiv" Width="270" Height="176"
+                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                   Margin="0,294,92,0" Visibility="Hidden">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/aside_bg2.png"/>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <Label x:Name="EventTitle" Content="이벤트"
+                   HorizontalAlignment="Left" Margin="1085,310,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="22" FontWeight="Bold" Visibility="Hidden"/>
+
+                        <Label x:Name="btnEvent" Content="+"
+                   HorizontalAlignment="Right" Margin="0,298,110,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="36" FontWeight="Bold" Cursor="Hand"
+                   Visibility="Hidden"
+                   PreviewMouseDown="btnEvent_PreviewMouseDown"/>
+
+                        <Label x:Name="Event1" Content=""
+                   HorizontalAlignment="Left" Margin="1085,360,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="14" Cursor="Hand"
+                   PreviewMouseDown="Event1_PreviewMouseDown"/>
+
+                        <Label x:Name="Event2" Content=""
+                   HorizontalAlignment="Left" Margin="1085,390,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="14" Cursor="Hand"
+                   PreviewMouseDown="Event2_PreviewMouseDown"/>
+
+                        <Label x:Name="Event3" Content=""
+                   HorizontalAlignment="Left" Margin="1085,420,0,0"
+                   VerticalAlignment="Top" Foreground="White"
+                   FontSize="14" Cursor="Hand"
+                   PreviewMouseDown="Event3_PreviewMouseDown"/>
+
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- overlay spinner (on top of the UI) -->
+        <sp:ucSpinnerDotCircle x:Name="loadSpinner"
+                           RenderTransformOrigin="0.5,0.5"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0,-2,0,2"
+                           Panel.ZIndex="10">
+            <sp:ucSpinnerDotCircle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </sp:ucSpinnerDotCircle.RenderTransform>
+        </sp:ucSpinnerDotCircle>
+
     </Grid>
-  </Border>
 </Window>

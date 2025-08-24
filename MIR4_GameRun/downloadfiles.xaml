@@ -20,13 +20,13 @@
     <Panel.Background>
       <ImageBrush ImageSource="Resources/popup_bg.png"/>
     </Panel.Background>
-    <Label x:Name="label_title_string" Content="업데이트 파일을 다운로드 중 입니다." FontSize="19"
+        <Label x:Name="label_title_string" Content="Downloading update files." FontSize="19"
            HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF3C4146" Margin="0,-110,0,0"/>
     <Label x:Name="label_check_string" Content="" FontSize="12" HorizontalAlignment="Center"
            VerticalAlignment="Center" Foreground="#FF3C4146" Margin="0,-20,0,0"/>
     <ProgressBar Name="pbStatus" Minimum="0" Maximum="100" Value="0" Height="42" Width="380"
                  HorizontalAlignment="Center" Margin="0,90,0,0"/>
-    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,90,0,0"
-               Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={0:0}%}"/>
-  </Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,90,0,0"
+           Text="{Binding ElementName=pbStatus, Path=Value, StringFormat='{}{0:0}%'}"/>
+    </Grid>
 </Window>

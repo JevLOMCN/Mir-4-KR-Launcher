@@ -22,9 +22,9 @@
            HorizontalAlignment="Left"/>
     <Label Name="LaDispPerUnit" Content="%" HorizontalAlignment="Left" Margin="144,583,0,0"
            VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.308" Foreground="#FF3c4145" FontSize="20"/>
-    <Label Name="LaDispPerTxt" Content="설치중..." HorizontalAlignment="Left" Margin="165,576,0,0"
+        <Label Name="LaDispPerTxt" Content="Installing..." HorizontalAlignment="Left" Margin="165,576,0,0"
            VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.308" Foreground="#FF3c4145" FontSize="25"/>
-    <Label Name="LaDownloadFile" Content="설치파일: 설치 중인 파일명" HorizontalAlignment="Left" Margin="350,571,0,0"
+        <Label Name="LaDownloadFile" Content="Installation file: Name of the file being installed" HorizontalAlignment="Left" Margin="350,571,0,0"
            VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.308" Foreground="#FF3c4145" FontSize="14"/>
     <Label Name="LaDownloadLength" Content="( 00,000 / 00,000 )" HorizontalAlignment="Left"
            Margin="350,588,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.308"

@@ -1,0 +1,99 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{088FEB26-215B-48DB-8B72-376D54834790}|..\\MIR4_GameRun\\MIR4_GameRun.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_gamerun\\downloadfiles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\MainWindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\GAME_STATUS.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\SentryApi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\CallApi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\AES.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "downloadfiles.xaml",
+              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\downloadfiles.xaml",
+              "RelativeDocumentMoniker": "..\\MIR4_GameRun\\downloadfiles.xaml",
+              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\downloadfiles.xaml",
+              "RelativeToolTip": "..\\MIR4_GameRun\\downloadfiles.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-24T15:31:36.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.cs",
+              "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\MainWindow.cs",
+              "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\MainWindow.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-23T14:35:04.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GAME_STATUS.cs",
+              "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\GAME_STATUS.cs",
+              "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\GAME_STATUS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-23T14:35:02.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SentryApi.cs",
+              "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\SentryApi.cs",
+              "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\SentryApi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-23T14:34:54.737Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CallApi.cs",
+              "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\CallApi.cs",
+              "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\CallApi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-23T14:34:48.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AES.cs",
+              "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\AES.cs",
+              "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\AES.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-23T14:34:43.438Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

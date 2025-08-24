@@ -3,27 +3,28 @@
   "WorkspaceRootPath": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{088FEB26-215B-48DB-8B72-376D54834790}|..\\MIR4_GameRun\\MIR4_GameRun.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_gamerun\\downloadfiles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_launcher\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_launcher\\popup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_launcher\\spinners\\ucspinnerdotcircle.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|solutionrelative:spinners\\ucspinnerdotcircle.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_launcher\\mirage\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|solutionrelative:mirage\\mainwindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_launcher\\ucmainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|solutionrelative:ucmainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\popup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|solutionrelative:popup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{088FEB26-215B-48DB-8B72-376D54834790}|..\\MIR4_GameRun\\MIR4_GameRun.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_gamerun\\popup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_launcher\\downloadgamefile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\downloadgamefile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AEB5C5C6-69DA-403B-BE6C-1D2C55C0DA20}|MIR4_Launcher.csproj|solutionrelative:downloadgamefile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{088FEB26-215B-48DB-8B72-376D54834790}|..\\MIR4_GameRun\\MIR4_GameRun.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_gamerun\\downloadgamefile.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{088FEB26-215B-48DB-8B72-376D54834790}|..\\MIR4_GameRun\\MIR4_GameRun.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_gamerun\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{088FEB26-215B-48DB-8B72-376D54834790}|..\\MIR4_GameRun\\MIR4_GameRun.csproj|g:\\mir4\\mir-4-kr-launcher\\mir4_gamerun\\ucmainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\MainWindow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -48,95 +49,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ucspinnerdotcircle.xaml",
+              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\spinners\\ucspinnerdotcircle.xaml",
+              "RelativeDocumentMoniker": "spinners\\ucspinnerdotcircle.xaml",
+              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\spinners\\ucspinnerdotcircle.xaml",
+              "RelativeToolTip": "spinners\\ucspinnerdotcircle.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-24T17:23:54.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.cs",
+              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\MIRAGE\\MainWindow.cs",
+              "RelativeDocumentMoniker": "MIRAGE\\MainWindow.cs",
+              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\MIRAGE\\MainWindow.cs",
+              "RelativeToolTip": "MIRAGE\\MainWindow.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAwwBAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-24T15:52:24.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "mainwindow.xaml",
+              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\mainwindow.xaml",
+              "RelativeDocumentMoniker": "mainwindow.xaml",
+              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\mainwindow.xaml",
+              "RelativeToolTip": "mainwindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-24T15:52:18.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ucmainmenu.xaml",
+              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\ucmainmenu.xaml",
+              "RelativeDocumentMoniker": "ucmainmenu.xaml",
+              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\ucmainmenu.xaml",
+              "RelativeToolTip": "ucmainmenu.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-24T15:51:57.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "popup.xaml",
               "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\popup.xaml",
               "RelativeDocumentMoniker": "popup.xaml",
               "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\popup.xaml",
               "RelativeToolTip": "popup.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:43:15.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-24T15:43:15.34Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "downloadgamefile.xaml",
               "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\downloadgamefile.xaml",
               "RelativeDocumentMoniker": "downloadgamefile.xaml",
               "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_Launcher\\downloadgamefile.xaml",
               "RelativeToolTip": "downloadgamefile.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:42:41.459Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "downloadgamefile.xaml",
-              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\downloadgamefile.xaml",
-              "RelativeDocumentMoniker": "..\\MIR4_GameRun\\downloadgamefile.xaml",
-              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\downloadgamefile.xaml",
-              "RelativeToolTip": "..\\MIR4_GameRun\\downloadgamefile.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:41:52.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "mainwindow.xaml",
-              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\mainwindow.xaml",
-              "RelativeDocumentMoniker": "..\\MIR4_GameRun\\mainwindow.xaml",
-              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\mainwindow.xaml",
-              "RelativeToolTip": "..\\MIR4_GameRun\\mainwindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:41:46.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-24T15:42:41.459Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "ucmainmenu.xaml",
-              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\ucmainmenu.xaml",
-              "RelativeDocumentMoniker": "..\\MIR4_GameRun\\ucmainmenu.xaml",
-              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\ucmainmenu.xaml",
-              "RelativeToolTip": "..\\MIR4_GameRun\\ucmainmenu.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:40:06.643Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "popup.xaml",
-              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\popup.xaml",
-              "RelativeDocumentMoniker": "..\\MIR4_GameRun\\popup.xaml",
-              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\popup.xaml",
-              "RelativeToolTip": "..\\MIR4_GameRun\\popup.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:39:47.855Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "downloadfiles.xaml",
-              "DocumentMoniker": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\downloadfiles.xaml",
-              "RelativeDocumentMoniker": "..\\MIR4_GameRun\\downloadfiles.xaml",
-              "ToolTip": "G:\\Mir4\\Mir-4-KR-Launcher\\MIR4_GameRun\\downloadfiles.xaml",
-              "RelativeToolTip": "..\\MIR4_GameRun\\downloadfiles.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-24T15:31:36.373Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "MainWindow.cs",
               "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\MainWindow.cs",
               "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\MainWindow.cs",
@@ -145,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "GAME_STATUS.cs",
               "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\GAME_STATUS.cs",
               "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\GAME_STATUS.cs",
@@ -155,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "SentryApi.cs",
               "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\SentryApi.cs",
               "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\SentryApi.cs",
@@ -165,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "CallApi.cs",
               "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\CallApi.cs",
               "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\CallApi.cs",
@@ -175,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "AES.cs",
               "DocumentMoniker": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\AES.cs",
               "ToolTip": "C:\\Users\\johne\\Desktop\\BansheeV1\\MIR4_GameRun\\MIRAGE\\Helper\\AES.cs",
